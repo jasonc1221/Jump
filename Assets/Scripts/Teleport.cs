@@ -15,10 +15,17 @@ public class Teleport : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (ball != null)
+        {
+            if (ball.transform.position.y > transform.position.y)
+            {
+                Vector3 walls = new Vector3(transform.position.x, ball.transform.position.y, 0);
+                transform.position = walls;
+            }
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D teleport)
+    private void OnCollisionEnter2D(Collider2D teleport)
     {
         var y = transform.position.y;
         if (teleport.tag == "RightWall") {

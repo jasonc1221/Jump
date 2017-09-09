@@ -17,19 +17,31 @@ public class Ball : MonoBehaviour {
 	void Update () {
 
         //movement of ball
-        var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        transform.position += move * speed * Time.deltaTime;
+        //var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+        }
+        else if(Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
+      //  if(transform.position)
+        //transform.position += move * speed * Time.deltaTime;
 	}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         //allows ball to jump once it hits a platform
-        this.transform.GetComponent<Rigidbody2D>().velocity = Vector3.up * bounce;
-
-        //sets walls so that ball can teleport
-        if (other.gameObject.name == "RightWall" || other.gameObject.name == "LeftWall")
+        if(other.gameObject.tag == "Platform")
         {
-            transform.position = new Vector2(transform.position.x / Mathf.Abs(transform.position.x) - transform.position.x, transform.position.y);
+            this.transform.GetComponent<Rigidbody2D>().velocity = Vector3.up * bounce;
+        }
+       
+        //sets walls so that ball can teleport
+        if (other.gameObject.tag == "RightWall" || other.gameObject.tag == "LeftWall")
+        {
+            transform.position = new Vector3(transform.position.x * -1, transform.position.y, 0);
         }
     }
 
