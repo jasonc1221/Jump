@@ -25,7 +25,7 @@ public class Teleport : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collider2D teleport)
+    private void OnTriggerEnter2D(Collider2D teleport)
     {
         var y = transform.position.y;
         if (teleport.tag == "RightWall") {

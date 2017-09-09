@@ -45,10 +45,18 @@ public class LoseCollider : MonoBehaviour {
             }
            
         }
+        else if (trigger.gameObject.tag == "Player")
+        {
+            Debug.Log("Lost");
+            LevelManager man = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+            man.LoadLevel("End");
+
+        }
         else
         {
             DestroyObject(trigger.gameObject);
         }
+
     }
     
    
@@ -64,8 +72,9 @@ public class LoseCollider : MonoBehaviour {
                 Vector3 targetPosition = ball.transform.position - new Vector3(ball.transform.position.x, 7, 0);
                 transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
             }
-           
         }
+       
+
       
     }
 

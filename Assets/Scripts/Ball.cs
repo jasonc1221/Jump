@@ -6,8 +6,9 @@ public class Ball : MonoBehaviour {
 
     float speed = 12.0f;    //speed at which the ball is moving
     public float bounce; //how much ball bounces once it hits platform
-
-
+    float maxpoints=0;
+    float point;
+    //private ScoreKeepers scorekeeper;
     // Use this for initialization
     void Start () {
         
@@ -26,9 +27,19 @@ public class Ball : MonoBehaviour {
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
+        point = transform.position.y;
+       /* if (maxpoints < point)
+        {
+            maxpoints = point;
+            Debug.Log(maxpoints);
+            //scorekeeper.Score(maxpoints);
+            // put in round up fuc
+        }*/
       //  if(transform.position)
         //transform.position += move * speed * Time.deltaTime;
+
 	}
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
